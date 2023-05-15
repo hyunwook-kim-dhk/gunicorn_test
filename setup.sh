@@ -20,6 +20,7 @@ source ./venv/bin/activate
 pip install -r ./requirements.pip
 python guniprj/manage.py collectstatic --no-input
 chown -R www-data ../
+ln -s ~/gunicorn_test /var/www/gunicorn_test
 
 # setup nginx and uwsgi and mysql
 echo "----------[SETTING UP UWSGI]----------"

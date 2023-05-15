@@ -8,7 +8,7 @@ git checkout master
 echo "git merge --ff-only origin/master"
 git merge --ff-only origin/master
 
-python ~/workshop_dashboard/workshop/manage.py collectstatic --no-input
+python ~/gunicorn_test/guniprj/manage.py collectstatic --no-input
 
 echo "service uwsgi restart"
 service uwsgi restart

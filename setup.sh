@@ -18,16 +18,16 @@ echo "----------[SETTING UP PYTHON]----------"
 python3 -m venv ./venv
 source ./venv/bin/activate
 pip install -r ./requirements.pip
-python workshop/manage.py collectstatic --no-input
+python guniprj/manage.py collectstatic --no-input
 chown -R www-data ../
 
-# setup nginx and gunicorn and mysql
-# echo "----------[SETTING UP GUNICORN]--------"
-# copy gucniron setting file
-# service gunicorn restart
-# echo "----------[SETTING UP NGINX]----------"
-# cp ./nginx.conf /etc/nginx/sites-available/default
-# service nginx restart
+# setup nginx and uwsgi and mysql
+echo "----------[SETTING UP UWSGI]----------"
+cp ./django_uwsgi.ini /etc/uwsgi/apps-enabled/django.ini
+service uwsgi restart
+echo "----------[SETTING UP NGINX]----------"
+cp ./nginx.conf /etc/nginx/sites-available/default
+service nginx restart
 echo "----------[SETTING UP MYSQL]----------"
 service mysql restart
 mysql < setup.sql
